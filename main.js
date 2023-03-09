@@ -31,7 +31,7 @@ function createWindow() {
     },
   });
 
-  appMenu();
+  appMenu(mainWindow.webContents);
   mainWindow.loadFile("renderer/main.html");
 
   state.manage(mainWindow);

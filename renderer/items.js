@@ -74,6 +74,14 @@ exports.open = () => {
     shell.showItemInFolder(selectedItems.dataset.path);
   }
 };
+exports.openSelectedItem = () => {
+  if (!this.storage.length) return;
+  let selectedItems = this.getSelectedItem().node;
+  if (selectedItems.dataset.type === "url") {
+    let contentUrl = selectedItems.dataset.url;
+    shell.openExternal(contentUrl);
+  }
+};
 exports.addItem = (item, isNew = false) => {
   let itemNode = document.createElement("div");
 
@@ -90,7 +98,7 @@ exports.addItem = (item, isNew = false) => {
   item.path &&
     itemNode.querySelector("button").addEventListener("dblclick", (e) => {
       itemsCont.removeChild(itemNode);
-      let index = +itemNode.dataset.index;
+      let index = +itemNode.dataset.index - 1;
       this.storage.splice(index, 1);
       this.save();
       Array.from(itemsCont).forEach((item, i) => {

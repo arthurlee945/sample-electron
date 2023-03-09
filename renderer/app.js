@@ -15,6 +15,23 @@ const showModal2 = document.getElementById("show-modal2"),
   moveFile = document.getElementById("move-file"),
   dropBox = document.getElementById("dropbox");
 
+ipcRenderer.on("menu-show-modal", () => {
+  if (closeModal.style.display === "none") return;
+  showModal.click();
+});
+ipcRenderer.on("menu-open-item", () => {
+  items.open();
+});
+ipcRenderer.on("menu-delete-item", () => {
+  let selectedItem = items.getSelectedItem();
+  items.delete(selectedItem.index);
+});
+ipcRenderer.on("open-in-browser", () => {
+  items.openSelectedItem();
+});
+ipcRenderer.on("menu-focus-search", () => {
+  search.focus();
+});
 //addListener for search
 search.addEventListener("keyup", (e) => {
   Array.from(document.getElementsByClassName("read-item")).forEach((el) => {
