@@ -5,7 +5,6 @@ const appMenu = require("./menu");
 let mainWindow;
 
 ipcMain.on("new-item", (e, itemUrl) => {
-  console.log(itemUrl);
   readItem(itemUrl, (item) => {
     e.sender.send("new-item-success", item);
   });
