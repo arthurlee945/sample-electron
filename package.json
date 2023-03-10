@@ -1,25 +1,45 @@
 {
-  "name": "master-electron",
+  "name": "sample_app",
   "version": "1.0.0",
-  "description": "Master Electron Course Code",
+  "description": "smaple code",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "watch": "nodemon --exec electron ."
+    "watch": "nodemon --exec electron .",
+    "build": "electron-builder --help",
+    "win-cert": " electron-builder create-self-signed-cert -p myComputer"
   },
-  "repository": "https://github.com/stackacademytv/master-electron",
   "keywords": [
     "Electron",
-    "Master Electron",
     "demo"
   ],
-  "author": "GitHub, Stackacademytv",
+  "repository": "https://github.com/arthurlee945/sample-electron",
+  "homepage": "https://github.com/arthurlee945/sample-electron",
+  "author": "GitHub, arthurlee945",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^9.0.0",
+    "electron-builder": "^23.6.0",
     "nodemon": "^2.0.0"
   },
   "dependencies": {
     "electron-window-state": "^5.0.3"
+  },
+  "build": {
+    "appId": "digital.arthurlee",
+    "copyright": "Copyright by Me",
+    "mac":{
+      "category":"public.app-category.productivity",
+      "target":"dmg"
+    },
+    "win":{
+      "certificateFile":"private/myComputer.pfx",
+      "certificatePassword":"",
+      "verifyUpdateCodeSignature": false,
+      "publisherName": "myComputer"
+    },
+    "linux":{
+      "category": "Utility"
+    }
   }
 }
